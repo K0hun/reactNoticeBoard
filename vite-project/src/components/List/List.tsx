@@ -8,6 +8,7 @@ import { deleteList, setModalActive } from '../../store/slices/boardSlice'
 import { addLog } from '../../store/slices/loggerSlice'
 import { v4 } from 'uuid'
 import { setModalData } from '../../store/slices/modalSlice'
+import { deleteButton, header, listName, listWrapper } from './List.css'
 
 type TListProps = {
   boardId: string;
@@ -44,10 +45,13 @@ const List: FC<TListProps> = ({
   }
 
   return (
-    <div>
-      <div>
-        <div>{list.listName}</div>
+    <div
+      className={listWrapper}
+    >
+      <div className={header}>
+        <div className={listName}>{list.listName}</div>
         <GrSubtract
+          className={deleteButton}
           onClick={() => handleListDelete(list.listId)}
         />
       </div>
