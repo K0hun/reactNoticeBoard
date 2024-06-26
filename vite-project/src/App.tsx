@@ -8,13 +8,13 @@ function App() {
   const [activeBoardId, setActiveBoardId] = useState('board-0');
   return (
     <div className={appContainer}>
-      <div className={board}>
         <BoardList 
         activeBoardId={activeBoardId} 
         setActiveBoardId={setActiveBoardId}
         />
+      <div className={board}>
       </div>
-      
+
       <div className={buttons}>
         <button>
           이 게시판 삭제하기
