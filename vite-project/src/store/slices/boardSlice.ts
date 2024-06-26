@@ -1,4 +1,4 @@
-import { PayloadAction, PayloadAction, PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IBoard } from "../../types";
 
 type TBoardState = {
