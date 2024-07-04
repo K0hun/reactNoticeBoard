@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from 'react'
-import { useTypedSelector } from '../../hooks/redux';
+import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
 import SideForm from './SideForm/SideForm';
 import {FiLogIn, FiPlusCircle} from 'react-icons/fi';
 import { addButton, addSection, boardItem, boardItemActive, container, title } from './BoardList.css';
@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { GoSignOut } from 'react-icons/go';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../../firebase';
+import { setUser } from '../../store/slices/userSlice';
 
 type TBoardListProps = {
   activeBoardId: string;
@@ -17,7 +18,7 @@ const BoardList: FC<TBoardListProps> = ({
   activeBoardId,
   setActiveBoardId
 }) => {
-
+  const dispatch = useTypedDispatch();
   const { boardArray } = useTypedSelector(state => state.boards);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -29,8 +30,15 @@ const BoardList: FC<TBoardListProps> = ({
     signInWithPopup(auth, provider)
     .then(userCredential => {
       console.log(userCredential);
-
-      
+      dispatch(
+        setUser({
+          email: userCredential.user.email,
+          id: userCredential.user.uid,
+        })
+      )
+    })
+    .catch(error => {
+      console.error(error);
     })
   }
 
