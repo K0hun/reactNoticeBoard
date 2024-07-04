@@ -9,7 +9,7 @@ import LoggerModal from './components/LoggerModal/LoggerModal';
 import { deleteBoard, sort } from './store/slices/boardSlice';
 import { addLog } from './store/slices/loggerSlice';
 import { v4 } from 'uuid';
-import { DragDropContext, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 
 function App() {
